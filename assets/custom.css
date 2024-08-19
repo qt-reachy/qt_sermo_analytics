@@ -1,0 +1,166 @@
+/* Arcada UAS colors */
+:root {
+    --page-bg-color: #EEEEEE;
+    --outline-color: #000000;
+    --primary-bg-color: #812990;
+    --primary-text-color: #FFFFFF;
+    --primary-overlay-color: #ecdfee;
+    --highlight-bg-color: #FDEDDE;
+    --form-border-color: #EEEEEE;
+    --form-line-color: #333333;
+    --form-disabled-color: #CCCCCC;
+    --form-button-bg-color: #ECDFEE;
+    --form-button-border-color: #812990;
+    --form-button-bg-hover-color: #FFFFFF;
+    --form-button-text-color: #812990;
+    --form-button-text-hover-color: #812990;
+    --form-login-link-text-color: #000000;
+    --print-text: #000000;
+    --content-bg-color: #FFFFFF;
+    --content-text-color: #333333;
+    --content-line-color: #DDDDDD;
+    --content-text-hover-color: #812990;
+    --content-bg-highlight-color: #f3f3f3;
+    --subtitle-bg-color: #000000;
+    --subtitle-text-color: #FFFFFF;
+    --message-bg-color: #000000;
+    --message-text-color: #FFFFFF;
+    --menu-button-bg-color: #000000;
+    --menu-button-divider-color: #333333;
+    --menu-button-link-color: #FFFFFF;
+    --menu-button-hover-color: #812990;
+    --menu-button-disabled-bg-color: #DDDDDD;
+    --menu-button-disabled-link-color: #CCCCCC;
+    --navigation-border-color: #000000;
+    --secondary-menu-button-bg-color: #ECDFEE;
+    --secondary-menu-button-text-color: #812990;
+    --secondary-menu-button-hover-bg-color: #812990;
+    --secondary-menu-button-hover-text-color: #FFFFFF;
+    --secondary-menu-button-divider-color: #812990;
+    --menu-link-color: #000000;
+    --menu-hover-color: #812990;
+    --menu-link-inverted-color: #FFFFFF;
+    --footer-bg-color: #000000;
+    --footer-text-color: #FFFFFF;
+    --unpublished: #FF0000;
+    --cookie-bg-color: #FFFFFF;
+    --cookie-text-color: #000000;
+    --cookie-button-color: #812990;
+    --cookie-button-bg-color: #FFFFFF;
+    --video-bg-color: #000000;
+    --step--2: clamp(0.79rem, 0.7002rem + 0.4489vw, 0.9875rem);
+    --step--1: clamp(0.8888rem, 0.7876rem + 0.5057vw, 1.1113rem);
+    --step-0: clamp(1rem, 0.8864rem + 0.5682vw, 1.25rem);
+    --step-1: clamp(1.125rem, 0.9972rem + 0.6392vw, 1.4063rem);
+    --step-2: clamp(1.2656rem, 1.1219rem + 0.7188vw, 1.5819rem);
+    --step-3: clamp(1.4238rem, 1.2618rem + 0.8097vw, 1.78rem);
+    --step-4: clamp(1.6019rem, 1.4198rem + 0.9105vw, 2.0025rem);
+    --step-5: clamp(1.8019rem, 1.597rem + 1.0241vw, 2.2525rem);
+    --step-6: clamp(2.0275rem, 1.7971rem + 1.152vw, 2.5344rem);
+    --step-7: clamp(2.2807rem, 2.0215rem + 1.2959vi, 2.8509rem);
+}
+
+/**** Bootstrap theme override ****/
+
+[class*="primary"]{
+    outline: none !important;
+    box-shadow: none;
+}
+
+[class*="primary"],
+input[type='radio'],
+input[type='checkbox'] {
+    color: #fff;
+    background-color: var(--primary-bg-color) !important;
+    accent-color: var(--primary-bg-color);
+    border-color: var(--primary-bg-color) !important;
+    margin: 0.2rem;
+    box-shadow: none!important;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--menu-button-link-color);
+    background-color: var(--secondary-menu-button-divider-color);
+}
+
+.nav-link {
+    color: var(--menu-button-link-color);
+    background-color: var(--secondary-menu-button-bg-color);
+}
+
+.nav-link:hover {
+    color: var(--secondary-menu-button-hover-text-color);
+    background-color: var(--secondary-menu-button-hover-bg-color);
+}
+
+[class*="primary"],
+input[type='checkbox'] {
+    background-color: var(--secondary-menu-button-bg-color) !important;
+}
+
+[class*="primary"],
+input[type='checkbox']:checked {
+    background-color: var(--secondary-menu-button-hover-bg-color) !important;
+}
+
+[class*="primary"]:hover {
+    color: var(--primary-overlay-color);
+}
+
+/**** Plotly Dash overrides ****/
+/* DropDown */
+.Select-control {
+    background-color: var(--bs-body-bg) !important;
+    border: solid var(--form-button-border-color) 2px !important;
+}
+
+.Select-control:hover {
+    color: var(--content-text-hover-color);
+}
+
+.Select-value-label {
+    color: var(--print-text) !important;
+}
+
+.Select input {
+    color: var(--print-text);
+}
+
+/* dropdown menu options */
+.VirtualizedSelectOption {
+    background-color: var(--form-button-bg-hover-color);
+    color: var(--print-text);
+}
+
+/* dropdown menu hover effect */
+.VirtualizedSelectFocusedOption {
+    background-color: var(--form-button-bg-color);
+    color: var(--form-button-text-hover-color);
+}
+
+/* border on focus - default is blue
+    * shadow box around input box.  default is blue
+    */
+.is-focused:not(.is-open)>.Select-control {
+    border-color: var(--form-button-bg-color) !important;
+    box-shadow: 0 0 0 0.2rem var(--form-button-bg-color);
+}
+
+/* primary  this colors the input box text and x  of multi */
+.Select--multi .Select-value {
+    color: var(--form-button-text-color);
+    background-color: var(--form-button-bg-color);
+    border-color: var(--form-border-color) !important;
+}
+
+/* Multi-select clear vale */
+.Select--multi .Select-value-icon {
+    border: 0;
+}
+
+.Select--multi .Select-value-icon:hover {
+    color: var(--content-text-hover-color);
+    background-color: var(--form-button-bg-hover-color);
+}
+
+/*  */
