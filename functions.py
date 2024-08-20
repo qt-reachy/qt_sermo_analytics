@@ -1,5 +1,6 @@
 import pandas as pd
-
+import plotly.graph_objs as go
+import plotly.express as px
 
 def set_options(data, column=""):
     ''' Filters for all or a specific user '''
@@ -24,7 +25,7 @@ class UsersDataFrame():
                  __columns=[
                      "timestamp",
                      "action",
-                     "action_counter",
+                     "count",
                      "message",
                      "user"
                  ],
@@ -130,8 +131,8 @@ class UsersDataFrame():
             _total_runtime = self.__set_runtime(
                 _df, 'interaction_start', 'interaction_stop')
 
-            for count in _df['action_counter'].unique():
-                __df = _df.loc[_df['action_counter'] == count]
+            for count in _df['count'].unique():
+                __df = _df.loc[_df['count'] == count]
                 _rec_runtime = self.__set_runtime(
                     __df, 'recording_start', 'recording_done')
                 _rec_runtimes.append(_rec_runtime)
@@ -186,3 +187,14 @@ class UsersDataFrame():
         df = pd.DataFrame.from_dict(__user_data)
 
         return df
+
+
+
+def simple_time(df):
+    fig = px.line(df, x='total runtime', y='user', title='Time spent per user')
+    return fig
+
+def bar_chart_interactions(df):
+    _df = df['user'].value_counts()
+    fig = px.bar(_df, title='interaction length', template='presentation')
+    return fig

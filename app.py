@@ -1,6 +1,7 @@
 # Import packages
 from dash import Dash, dcc, html, Input, Output, State, callback
 import dash_bootstrap_components as dbc
+import functions
 from functions import UsersDataFrame
 
 # Incorporate data
@@ -53,23 +54,14 @@ app.layout = dbc.Container(children=[
             ])
         ]),
         dbc.Tab(label="Graphs", children=[
-            dcc.Graph(
-                figure={
-                    'data': [
-                        {'x': [1, 2, 3], 'y': [4, 1, 2],
-                            'type': 'bar', 'name': 'SF'},
-                        {'x': [1, 2, 3], 'y': [2, 4, 5],
-                         'type': 'bar', 'name': 'Montréal'},
-                    ]
-                }
-            )
+            dbc.Container(id='plots-graphs')
         ]),
         dbc.Tab(label="Table", children=[
-            html.Div(id='user-table')
+            dbc.Row(id='user-table')
         ]),
         dbc.Tab(label="Raw", children=[
             dbc.Table.from_dataframe(
-                Users.get_raw_data(), bordered=True, hover=True)
+                Users.get_raw_data(), bordered=True, hover=True, id='raw-data')
         ]),
     ])
 ])
@@ -91,9 +83,19 @@ def select_all_users(n_clicked, value):
     [Input('filter-user', 'value')],
 )
 def update_user_table(value):
-    # _df = Users.get_user_dataframe().loc[Users.get_user_dataframe()['user'].isin(value)]
     _df = Users.get_exploded_user(value)
     return dbc.Table.from_dataframe(_df, bordered=True, hover=True)
+
+@ app.callback(
+    Output('plots-graphs', 'children'),
+    [Input('filter-user', 'value')],
+)
+def plots_and_graphs(value):
+    _df = Users.get_exploded_user(value)
+    # fig = functions.simple_time(_df)
+    fig = functions.bar_chart_interactions(_df)
+    return dcc.Graph(figure=fig)
+
 
 
 # Run the app
