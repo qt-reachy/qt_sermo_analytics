@@ -31,13 +31,13 @@ class UsersDataFrame():
                  ],
                  __actions=[
                      'interaction_start',
-                     'interaction_stop',
+                     'interaction_done',
                      'recording_start',
                      'recording_stop',
                      'asr_inference_start',
                      'asr_inference_done',
-                     'prompt_start',
-                     'prompt_done',
+                     'llm_prompt_start',
+                     'llm_prompt_done',
                      'robot_start',
                      'robot_gesture',
                      'robot_done'
@@ -106,6 +106,7 @@ class UsersDataFrame():
         return users
 
     def __set_runtime(self, dataframe, action_start, action_stop):
+        print(action_stop)
         __start = self.__get_action_timestamp(dataframe, action_start)
         __stop = self.__get_action_timestamp(dataframe, action_stop)
         runtime = __stop - __start
@@ -129,7 +130,7 @@ class UsersDataFrame():
             # get variables
             _df = self.log.loc[self.log['user'] == user]
             _total_runtime = self.__set_runtime(
-                _df, 'interaction_start', 'interaction_stop')
+                _df, 'interaction_start', 'interaction_done')
 
             for count in _df['count'].unique():
                 __df = _df.loc[_df['count'] == count]
@@ -137,7 +138,7 @@ class UsersDataFrame():
                     __df, 'recording_start', 'recording_done')
                 _rec_runtimes.append(_rec_runtime)
 
-                _rec_filename = self.__get_message(__df, 'recording_start')
+                _rec_filename = self.__get_message(__df, 'recording_done')
                 _rec_filenames.append(_rec_filename)
 
                 _asr_runtime = self.__set_runtime(
@@ -147,14 +148,14 @@ class UsersDataFrame():
                 _asr_result = self.__get_message(__df, 'asr_inference_done')
                 _asr_results.append(_asr_result)
 
-                _user_prompt = self.__get_message(__df, 'prompt_start')
+                _user_prompt = self.__get_message(__df, 'llm_prompt_start')
                 _user_prompts.append(_user_prompt)
 
                 _prompt_runtime = self.__set_runtime(
-                    __df, 'prompt_start', 'prompt_done')
+                    __df, 'llm_prompt_start', 'llm_prompt_done')
                 _prompt_runtimes.append(_prompt_runtime)
 
-                _prompt_response = self.__get_message(__df, 'prompt_done')
+                _prompt_response = self.__get_message(__df, 'llm_prompt_done')
                 _prompt_responses.append(_prompt_response)
 
                 _robot_runtime = self.__set_runtime(

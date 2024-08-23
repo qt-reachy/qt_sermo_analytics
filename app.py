@@ -7,7 +7,7 @@ import env
 
 # Incorporate data
 filename = env.LogCsvFile
-Users = UsersDataFrame('logs.csv')
+Users = UsersDataFrame(filename)
 
 # Initialize the app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
