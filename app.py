@@ -3,8 +3,10 @@ from dash import Dash, dcc, html, Input, Output, State, callback
 import dash_bootstrap_components as dbc
 import functions
 from functions import UsersDataFrame
+import env
 
 # Incorporate data
+filename = env.LogCsvFile
 Users = UsersDataFrame('logs.csv')
 
 # Initialize the app
@@ -100,4 +102,4 @@ def plots_and_graphs(value):
 
 # Run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
