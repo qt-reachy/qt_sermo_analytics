@@ -1,5 +1,5 @@
-# QTo_Analytics
-PlotlyDash Flask server for analyzing QT_Whisper data.
+# qt_sermo_analytics
+PlotlyDash Flask server for analyzing qt_sermo data.
 
 
 # Data aggregation
